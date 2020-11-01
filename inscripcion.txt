@@ -1,0 +1,6 @@
+Bases de Datos,24987,40,L/M/V_9-10/9-11/9-11
+Desarrollo de Aplicaciones Web,25736,45,L/M/V_11-12/11-13/11-13
+Programacion Distribuida,31490,43,L/MA/J_18-19/17-19/17-19
+Seguridad en Redes,31429,40,L/M/V_11-12/11-13/11-13
+Tecnicas de Inteligencia Arttificial,31379,45,L/MA/J_14-15/13-15/13-15
+Tratamiento de la Informacion,31205,43,L/M/V_9-10/9-11/9-11
