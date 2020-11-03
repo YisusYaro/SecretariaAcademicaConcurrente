@@ -14,7 +14,7 @@ public class Archivo{
         String nrc;
         
         try{
-            reader = new BufferedReader(new FileReader(nombreArchivo));
+                    reader = new BufferedReader(new FileReader(nombreArchivo));
             while ((linea = reader.readLine()) != null) {
                 atributos = linea.split(",");
                 nrc = atributos[1];

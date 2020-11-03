@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.concurrent.*;
+
 public class Materia{
     //atributos
     private String nrc;
@@ -22,13 +23,47 @@ public class Materia{
     }
     //metodos
     public String toString(){
-        return "Materia: " + this.nombreMateria + " NRC: " + this.nrc + " Capacidad: " + Integer.toString(this.capacidadAlumnos) + " Horario: " + this.horario;
+        return "Materia: " + this.nombreMateria + " NRC: " + this.nrc + " Capacidad: " + this.capacidadAlumnos + " Horario: " + this.horario + "Asignada: " + asignada + "Profesor: " + this.profesor.getNombre();
     }
 
-    public void inscribirMateria(){
-       /* mutex.acquire();
-        // sección crítica
-        mutex.release();*/
+    public boolean inscribirMateria(Profesor profesor){
+        try{
+            mutex.acquire();
+            System.out.println(profesor.getNombre() + " " + this.nombreMateria);
+            //sección crítica  
+            if(!this.asignada){
+                this.asignada = true;
+                this.profesor = profesor;
+
+                mutex.release();
+            }
+            else{
+                mutex.release();
+                return false;
+            }
+            
+           
+        }catch(InterruptedException ie){
+            System.out.println("Error al inscribir profesor"+ie.getMessage());
+        }
+        return this.asignada;
+    }
+
+    public boolean inscribirMateria(Alumno alumno){
+        boolean status = false;
+        try{
+            mutex.acquire();
+            //sección crítica
+            if(this.capacidadAlumnos>0){
+                this.capacidadAlumnos--;
+                this.alumnos.add(alumno);
+                status = true;
+            }
+            mutex.release();
+        }catch(InterruptedException ie){
+            System.out.println("Error al inscribir alumno " + ie.getMessage());
+        }
+        return status;
     }
     
 }
