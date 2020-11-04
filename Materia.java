@@ -22,6 +22,11 @@ public class Materia{
         this.mutex = new Semaphore(1);
     }
     //metodos
+
+    public String getNrc(){
+        return this.nrc;
+    }
+
     public String toString(){
         return "Materia: " + this.nombreMateria + " NRC: " + this.nrc + " Capacidad: " + this.capacidadAlumnos + " Horario: " + this.horario + "Asignada: " + asignada + "Profesor: " + this.profesor.getNombre();
     }
@@ -29,7 +34,7 @@ public class Materia{
     public boolean inscribirMateria(Profesor profesor){
         try{
             mutex.acquire();
-            System.out.println(profesor.getNombre() + " " + this.nombreMateria);
+            //System.out.println(profesor.getNombre() + " " + this.nombreMateria);
             //sección crítica  
             if(!this.asignada){
                 this.asignada = true;
@@ -54,10 +59,15 @@ public class Materia{
         try{
             mutex.acquire();
             //sección crítica
-            if(this.capacidadAlumnos>0){
-                this.capacidadAlumnos--;
-                this.alumnos.add(alumno);
-                status = true;
+            if(this.asignada){
+                if(this.capacidadAlumnos>0){
+                    this.capacidadAlumnos--;
+                    this.alumnos.add(alumno);
+                    status = true;
+                }
+            }
+            else{
+                System.out.println("no fue asignada: " + this.nombreMateria);
             }
             mutex.release();
         }catch(InterruptedException ie){
@@ -65,5 +75,10 @@ public class Materia{
         }
         return status;
     }
-    
+    public String getNombre(){
+        return this.nombreMateria;
+    }
+    public int getCapacidad(){
+        return this.capacidadAlumnos;
+    }   
 }

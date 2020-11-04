@@ -29,7 +29,7 @@ public class Test {
 
         Profesor miProfesor1 = new Profesor("Pedro","Garcia","Juarez","pedro.juarez@correo.buap.mx","200058915",new String [] {"31490","31205"});
         Profesor miProfesor2 = new Profesor("Hilda","Castillo", "Zacatelco", "hildacz@gmail.com", "256122810", new String[] {"25736","31490","31379"});
-        Profesor miProfesor3 = new Profesor("Enrique","Colmenares","Guillen","enrique.colmenares@correo.buap.mx","200067890", new String[] {"31429","31205","24987"});
+        Profesor miProfesor3 = new Profesor("Enrique","Colmenares","Guillen","enrique.colmenares@correo.buap.mx","200067890", new String[] {"31429","31205","24987","00000"});
         Profesor miProfesor4 = new Profesor("Miguel Angel","León","Sánchez", "no-sé@gmail.com", "123456789",new String[] {"31379","31490"});
         ArrayList<Profesor> profesoresFCC = new ArrayList<Profesor>();
         profesoresFCC.add(miProfesor1);
@@ -44,5 +44,6 @@ public class Test {
         for (Materia materia : Archivo.obtenerMaterias("inscripcion.txt").values()) {
             System.out.println(materia);
         }*/
+        
     }
 }

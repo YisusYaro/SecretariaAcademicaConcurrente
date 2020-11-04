@@ -8,13 +8,15 @@ public class Secretaria{
     private HashMap<String, Materia> materias;
     private Semaphore empty;
     private Semaphore full;
-    private final int size = 4;
+    public static int numeroProfesores;
+    public static int contadorProfesores = 0;
 
     public Secretaria(ArrayList<Alumno> alumnos, ArrayList<Profesor> profesores, HashMap<String, Materia> materias){
         this.alumnos = alumnos;
         this.profesores = profesores;
         this.materias = materias;
-        this.empty = new Semaphore(this.size);
+        numeroProfesores = profesores.size();
+        this.empty = new Semaphore(numeroProfesores);
         this.full = new Semaphore(0);
     }
 
@@ -27,15 +29,22 @@ public class Secretaria{
             profesor.setSemaforos(this.empty, this.full);
             profesor.setSecretaria(this);
             profesor.start();
-
         }
-
-
+        
         for(Alumno alumno : this.alumnos){
             alumno.setSemaforos(this.empty, this.full);
             alumno.setSecretaria(this);
             alumno.start();
         }
+        
 
+    }
+    public ArrayList<Materia> getMateriasAlternativas(String materiaSolicitada){
+        ArrayList<Materia> alternativas = new ArrayList<Materia>();
+        for(Materia materia : this.materias.values()){
+            if(materia.getNombre().equals(materiaSolicitada) && materia.getCapacidad()>0)
+                alternativas.add(materia);
+        }
+        return alternativas;
     }
 }

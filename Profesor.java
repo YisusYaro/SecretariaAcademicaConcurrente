@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.concurrent.*;
 
 public class Profesor extends Persona{
     //atributos
@@ -15,19 +14,24 @@ public class Profesor extends Persona{
     //metodos
     //este metodo es la parte concurrente y donde hará el proceso de solicitar la materia del archivo
     
-    public void run(){
+    public void run() {
 
-        try{
+       try{
             this.empty.acquire();
             HashMap<String, Materia> materias = this.secretariaFCC.getMaterias();
             for(String nrcDeseado : this.nrcsDeseados){
                 if(materias.get(nrcDeseado).inscribirMateria(this)){
-                    System.out.println(this.nombre+"\tinscrito a: "+ nrcDeseado);
+                    System.out.println("El profesor " + this.nombre+" imparte: "+ nrcDeseado);
                 }
             }
-            this.full.release();
+            Secretaria.contadorProfesores++;
+            if(Secretaria.contadorProfesores == Secretaria.numeroProfesores){
+                this.full.release(Secretaria.numeroProfesores);
+            }
+            //pueden ver la terminar de escritura?
+
         }catch(InterruptedException ie){
-            System.out.println("Error con profesor, escoger materia ->" + ie.getMessage());
+           System.out.println("Error con profesor, escoger materia ->" + ie.getMessage());
         }
 
         
