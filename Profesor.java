@@ -21,7 +21,7 @@ public class Profesor extends Persona{
             HashMap<String, Materia> materias = this.secretariaFCC.getMaterias();
             for(String nrcDeseado : this.nrcsDeseados){
                 if(materias.get(nrcDeseado).inscribirMateria(this)){
-                    System.out.println("El profesor " + this.nombre+" imparte: "+ nrcDeseado);
+                    System.out.println("El profesor " + this.nombre+" imparte: ("+ nrcDeseado + ") " + materias.get(nrcDeseado).getNombre());
                 }
             }
             Secretaria.contadorProfesores++;

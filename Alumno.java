@@ -21,19 +21,19 @@ public class Alumno extends Persona{
             HashMap<String, Materia> materias = this.secretariaFCC.getMaterias();
             for(String nrcDeseado : this.nrcsDeseados){
                 if(materias.get(nrcDeseado).inscribirMateria(this)){
-                    System.out.println("El alumno " + this.nombre + " inscrito a: "+ nrcDeseado);
+                    System.out.println("El alumno " + this.nombre + " inscrito a: ("+ nrcDeseado+") "+materias.get(nrcDeseado).getNombre());
                 }
                 else{
                     materiaDeseada = materias.get(nrcDeseado).getNombre();
                     if(this.secretariaFCC.getMateriasAlternativas(materiaDeseada).size() > 0)
                         for(Materia materiaAlternativa : this.secretariaFCC.getMateriasAlternativas(materiaDeseada)){
                             if(materias.get(materiaAlternativa.getNrc()).inscribirMateria(this)){
-                                System.out.println("El alumno " + this.nombre + " inscrito alternativamente a: "+ materiaAlternativa.getNrc());
+                                System.out.println("El alumno " + this.nombre + " inscrito alternativamente a: ("+ materiaAlternativa.getNrc() +") " + materiaAlternativa.getNombre() );
                                 break;
                             }
                         }
                     else{
-                        System.out.println("El alumno " +this.nombre + " no tiene alternativas para: " + nrcDeseado);
+                        System.out.println("El alumno " +this.nombre + " no tiene alternativas para: (" + nrcDeseado+") "+materias.get(nrcDeseado).getNombre());
                     }
 
                 }
