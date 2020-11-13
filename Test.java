@@ -18,11 +18,13 @@ public class Test {
         Alumno miAlumno2 = new Alumno("Christiam","Parraguirre","Lagunes","christiam.parraguirre@alumno.buap.mx","201758915", new String[] {"25736","31205"});
         Alumno miAlumno3 = new Alumno("David","Tlahuapa","Coraza","david.tlahuapa@alumno.buap.mx","201736875", new String[] {"24987","25736"});
         Alumno miAlumno4 = new Alumno("Melquiades","Bustamante","Bonfil","melkia-bustamante@melkia.com","201748133", new String[] {"25736","31490"});
+        Alumno miAlumno5 = new Alumno("Juan","Perez","Ramirez","juan@alumno.buap.mx","201754679", new String[] {"31490","31205"});
         ArrayList<Alumno> alumnosFCC = new ArrayList<Alumno>();
         alumnosFCC.add(miAlumno1);
         alumnosFCC.add(miAlumno2);
         alumnosFCC.add(miAlumno3);
         alumnosFCC.add(miAlumno4);
+        alumnosFCC.add(miAlumno5);
         
         //Profesores
 
@@ -31,19 +33,17 @@ public class Test {
         Profesor miProfesor2 = new Profesor("Hilda","Castillo", "Zacatelco", "hildacz@gmail.com", "256122810", new String[] {"25736","31490","31379"});
         Profesor miProfesor3 = new Profesor("Enrique","Colmenares","Guillen","enrique.colmenares@correo.buap.mx","200067890", new String[] {"31429","31205","24987","00000"});
         Profesor miProfesor4 = new Profesor("Miguel Angel","León","Sánchez", "no-sé@gmail.com", "123456789",new String[] {"31379","31490"});
+        Profesor miProfesor5 = new Profesor("Meliza","Contreras","Gonzalez", "meliza@gmail.com", "123123127",new String[] {"31490","31205"});
         ArrayList<Profesor> profesoresFCC = new ArrayList<Profesor>();
         profesoresFCC.add(miProfesor1);
         profesoresFCC.add(miProfesor2);
         profesoresFCC.add(miProfesor3);
         profesoresFCC.add(miProfesor4);
+        profesoresFCC.add(miProfesor5);
         
         Secretaria secretariaAcademicaFCC = new Secretaria(alumnosFCC, profesoresFCC, Archivo.obtenerMaterias("inscripcion.txt"));
         secretariaAcademicaFCC.proceso();
 
-        /*
-        for (Materia materia : Archivo.obtenerMaterias("inscripcion.txt").values()) {
-            System.out.println(materia);
-        }*/
-        
-    }
+
+        }
 }
